@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Programming Languages Examples</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      min-height: 100vh;
+    }
+
+    header{
+      background: rgba(30, 41, 59, 0.95);
+      text-align: center;
+      padding: 25px 15px;
+      border-bottom: 2px solid rgba(56, 189, 248, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    header h1{
+      font-size: 28px;
+      color: #38bdf8;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    header p{
+      margin-top: 8px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .container{
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 25px 10px;
+    }
+
+    .search-box{
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-box input{
+      width: 100%;
+      max-width: 500px;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 2px solid rgba(56,189,248,0.4);
+      outline: none;
+      font-size: 15px;
+      background: rgba(11, 18, 32, 0.9);
+      color: white;
+    }
+
+    .search-box input::placeholder{
+      color: #94a3b8;
+    }
+
+    /* Language Grid */
+    .languages{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .card{
+      background: rgba(30, 41, 59, 0.95);
+      border-radius: 16px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      border: 2px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+    }
+
+    .card:hover{
+      transform: translateY(-6px) scale(1.02);
+      border: 2px solid #38bdf8;
+      box-shadow: 0px 8px 20px rgba(56,189,248,0.4);
+    }
+
+    .logo{
+      width: 75px;
+      height: 75px;
+      background: white;
+      padding: 10px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+      transition: 0.3s;
+      object-fit: contain;
+    }
+
+    .card:hover .logo{
+      transform: rotate(4deg) scale(1.05);
+    }
+
+    .card h3{
+      font-size: 17px;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+
+    /* Output Section */
+    .output{
+      margin-top: 35px;
+      padding: 22px;
+      border-radius: 16px;
+      background: rgba(30, 41, 59, 0.95);
+      border: 2px solid rgba(56,189,248,0.4);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .output h2{
+      font-size: 22px;
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .output p{
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    pre{
+      margin-top: 12px;
+      background: #0b1220;
+      padding: 18px;
+      border-radius: 14px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn-copy{
+      margin-top: 12px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 12px;
+      background: #38bdf8;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-copy:hover{
+      background: #0ea5e9;
+      transform: scale(1.02);
+    }
+
+    footer{
+      text-align: center;
+      padding: 15px;
+      margin-top: 35px;
+      color: #94a3b8;
+      font-size: 13px;
+      background: rgba(30, 41, 59, 0.95);
+      border-top: 2px solid rgba(56,189,248,0.3);
+    }
+
+    @keyframes fadeIn {
+      from{ opacity: 0; transform: translateY(8px); }
+      to{ opacity: 1; transform: translateY(0px); }
+    }
+
+    @media(max-width: 500px){
+      header h1{ font-size: 20px; }
+      .card h3{ font-size: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>💻 All Programming Languages Gallery</h1>
+  <p>Click any language logo to see sample code examples ✅</p>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search language (Example: Python, Java, SQL)..." onkeyup="filterLanguages()">
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="languages" id="languagesGrid"></div>
+
+  <div class="output" id="output">
+    <h2>📌 Select a Language</h2>
+    <p>Click any programming language above to see its sample code.</p>
+  </div>
+
+</div>
+
+<footer>
+  ✅ Created By You | All Programming Languages Page
+</footer>
+
+<script>
+  const languages = [
+    { key:"c", name:"C Language", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg", code:`#include <stdio.h>
+int main() {
+  printf("Hello World in C!");
+  return 0;
+}`},
+
+    { key:"cpp", name:"C++", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg", code:`#include <iostream>
+using namespace std;
+int main() {
+  cout << "Hello World in C++!";
+  return 0;
+}`},
+
+    { key:"java", name:"Java", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", code:`public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello World in Java!");
+  }
+}`},
+
+    { key:"python", name:"Python", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", code:`print("Hello World in Python!")`},
+
+    { key:"r", name:"R Language", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg", code:`print("Hello World in R!")`},
+
+    { key:"js", name:"JavaScript", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", code:`console.log("Hello World in JavaScript!");`},
+
+    { key:"ts", name:"TypeScript", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", code:`let msg: string = "Hello World in TypeScript!";
+console.log(msg);`},
+
+    { key:"php", name:"PHP", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg", code:`<?php
+echo "Hello World in PHP!";
+?>`},
+
+    { key:"sql", name:"SQL", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", code:`-- SQL Example
+SELECT * FROM students;
+`},
+
+    { key:"cs", name:"C#", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg", code:`using System;
+class Program {
+  static void Main() {
+    Console.WriteLine("Hello World in C#!");
+  }
+}`},
+
+    { key:"go", name:"Go (Golang)", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg", code:`package main
+import "fmt"
+func main() {
+  fmt.Println("Hello World in Go!")
+}`},
+
+    { key:"rust", name:"Rust", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg", code:`fn main() {
+  println!("Hello World in Rust!");
+}`},
+
+    { key:"ruby", name:"Ruby", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg", code:`puts "Hello World in Ruby!"`},
+
+    { key:"dart", name:"Dart", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg", code:`void main() {
+  print("Hello World in Dart!");
+}`},
+
+    { key:"kotlin", name:"Kotlin", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", code:`fun main() {
+  println("Hello World in Kotlin!")
+}`},
+
+    { key:"swift", name:"Swift", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg", code:`import Foundation
+print("Hello World in Swift!")`},
+
+    { key:"node", name:"Node.js", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", code:`console.log("Hello World in Node.js");`},
+
+    { key:"react", name:"React", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", code:`function App(){
+  return <h1>Hello React!</h1>
+}
+export default App;`},
+
+    { key:"angular", name:"Angular", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg", code:`// Angular Component
+export class AppComponent {
+  title = 'Hello Angular!';
+}`},
+
+    { key:"vue", name:"Vue.js", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", code:`<template>
+  <h1>Hello Vue!</h1>
+</template>`},
+
+    { key:"flutter", name:"Flutter", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", code:`import 'package:flutter/material.dart';
+void main() => runApp(Text("Hello Flutter!"));`},
+
+    { key:"html", name:"HTML", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", code:`<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello World in HTML!</h1>
+  </body>
+</html>`},
+
+    { key:"css", name:"CSS", logo:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", code:`h1{
+  color: blue;
+  font-size: 32px;
+}`},
+  ];
+
+  const grid = document.getElementById("languagesGrid");
+
+  function loadLanguages(list){
+    grid.innerHTML = "";
+    list.forEach(lang => {
+      grid.innerHTML += `
+        <div class="card" onclick="showExample('${lang.key}')">
+          <img class="logo" src="${lang.logo}" alt="${lang.name}">
+          <h3>${lang.name}</h3>
+        </div>
+      `;
+    });
+  }
+
+  function showExample(key){
+    const lang = languages.find(l => l.key === key);
+
+    document.getElementById("output").innerHTML = `
+      <h2>✅ ${lang.name} Example</h2>
+      <pre id="codeBox">${lang.code}</pre>
+      <button class="btn-copy" onclick="copyCode()">📋 Copy Code</button>
+    `;
+  }
+
+  function copyCode(){
+    const text = document.getElementById("codeBox").innerText;
+    navigator.clipboard.writeText(text);
+    alert("✅ Code Copied Successfully!");
+  }
+
+  function filterLanguages(){
+    const value = document.getElementById("searchInput").value.toLowerCase();
+    const filtered = languages.filter(l => l.name.toLowerCase().includes(value));
+    loadLanguages(filtered);
+  }
+
+  // Load all cards first time
+  loadLanguages(languages);
+</script>
+
+</body>
+</html>
